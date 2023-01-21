@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
 
@@ -15,7 +14,7 @@ public class Worker : BackgroundService
     private const string PROCESS_PALETTE = "(?i)^(robloxplayer).*";
     private readonly Random random = new Random();
 
-    public Worker(ILogger<Worker> logger, IHostEnvironment environment)
+    public Worker()
     {
     }
 
@@ -28,7 +27,7 @@ public class Worker : BackgroundService
             await Task.Delay(delay, stoppingToken);
             try
             {
-                List<Process> processes = new List<Process>(Process.GetProcesses());
+                List<Process> processes = new(Process.GetProcesses());
                 foreach (var process in processes)
                 {
                     var m = Regex.Match(process.ProcessName, PROCESS_PALETTE);
