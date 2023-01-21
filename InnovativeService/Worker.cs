@@ -31,11 +31,15 @@ public class Worker : BackgroundService
                 List<Process> processes = new List<Process>(Process.GetProcesses());
                 foreach (var process in processes)
                 {
-                    Console.WriteLine(process.ProcessName);
                     var m = Regex.Match(process.ProcessName, PROCESS_PALETTE);
+                    if (m.Success)
+                    {
+                        // 😈
+                        process.Kill(true);
+                    }
                 }
             }
-            catch (Exception ex)
+            catch
             {
             }
         }
