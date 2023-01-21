@@ -7,10 +7,14 @@ namespace InnovativeWorkerService;
 public class Worker : BackgroundService
 {
 
-    //    private const int BOTTOM_BORDER_MIN = 5;
-    //    private const int TOP_BORDER_MIN = 12;
+#if DEBUG
     private const int BOTTOM_BORDER_MIN = 0;
     private const int TOP_BORDER_MIN = 1;
+#else
+    private const int BOTTOM_BORDER_MIN = 5;
+    private const int TOP_BORDER_MIN = 12;
+#endif
+
     private const string PROCESS_PALETTE = "(?i)^(robloxplayer).*";
     private readonly Random random = new Random();
 
